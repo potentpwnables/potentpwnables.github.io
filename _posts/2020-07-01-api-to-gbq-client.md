@@ -149,7 +149,7 @@ def process_xml_buffer():
     start = bfr.index("<record>")
     end = bfr.index("</record>")
     record = bfr[start:(end + 9)]
-    bfr = bfr[(end + 10):]
+    bfr = bfr[(end + 9):]
     return record
   except ValueError:
     return None
@@ -234,7 +234,7 @@ def process_xml_buffer():
     start = bfr.index("<record>")
     end = bfr.index("</record>")
     record = bfr[start:(end + 9)]
-    bfr = bfr[(end + 10):]
+    bfr = bfr[(end + 9):]
     return xml_to_dict(record)
   except ValueError:
     return None
@@ -267,7 +267,7 @@ def process_xml_buffer():
     start = bfr.index("<record>")
     end = bfr.index("</record>")
     record = bfr[start:(end + 9)]
-    bfr = bfr[(end + 10):]
+    bfr = bfr[(end + 9):]
     d = xml_to_dict(record)
     d["day"] = calculate_day(d["time"])
     return d
@@ -453,7 +453,7 @@ def process_xml_buffer():
     start = bfr.index("<record>")
     end = bfr.index("</record>")
     record = bfr[start:(end + 9)]
-    bfr = bfr[(end + 10):]
+    bfr = bfr[(end + 9):]
     return xml_to_dict(record)
   except ValueError:
     return None
