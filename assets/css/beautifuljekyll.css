@@ -51,6 +51,8 @@ a {
 a:hover,
 a:focus {
   color: {{ site.hover-col | default: "#0085A1" }};
+  font-weight: bold;
+  text-decoration: underline;
 }
 blockquote {
   color: #808080;
@@ -842,15 +844,17 @@ table tr td :last-child {
 
 code {
   padding: 0.125rem 0.25rem;
-  color: #c7254e;
-  background-color: #f9f2f4;
-  border-radius: 0.25rem;
+  color: #900;
+  background-color: transparent;
+  border-radius: 4px;
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 
 pre code {
   padding: 0;
   background-color: transparent;
   border-radius: 0;
+  font-size: 14px !important;
 }
 
 pre {
