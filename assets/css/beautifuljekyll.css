@@ -588,6 +588,15 @@ footer .footer-custom-content {
 
 .tag-btn {
   margin: 0.3125rem;
+  color: #900 !important;
+  background-color: #FFF !important;
+  border-color: #000 !important;
+  border-radius: 20px;
+}
+
+.tag.btn:hover {
+  background-color: #900 !important;
+  border-color: #900 !important;
 }
 
 #full-tags-list {
