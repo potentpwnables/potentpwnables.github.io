@@ -5,6 +5,13 @@
 }
 
 .copyright,
-.theme-by {
-    color: white !important;
+.theme-by,
+.theme-by a{
+    color: #ffffff !important;
+}
+
+.theme-by a:hover {
+    color: #ffffff !important;
+    font-weight: bold;
+    text-decoration: underline;
 }
