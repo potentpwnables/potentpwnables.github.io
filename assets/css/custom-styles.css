@@ -1,5 +1,5 @@
 .nav-link:hover {
-    color: #ffffff;
-    font-weight: bold;
+    color: #ffffff !important;
+    font-weight: bold !important;
     text-decoration: underline;
 }
