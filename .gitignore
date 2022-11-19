@@ -2,14 +2,17 @@
 _site
 .sass-cache
 .vagrant
+.Rproj.user
+Blog.Rproj
 
 # general
 .DS_Store
 Thumbs.db
 ehthumbs.db
 
+# gems
 Gemfile.lock
-
 beautiful-jekyll-theme-*.gem
-.Rproj.user
-Blog.Rproj
+
+# drafts
+_drafts
