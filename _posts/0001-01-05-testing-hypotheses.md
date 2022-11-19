@@ -1,3 +1,17 @@
+---
+title: Testing Hypotheses
+author: ''
+date: '2022-11-19'
+slug: testing-hypotheses
+categories: []
+tags:
+  - forensics
+  - investigations
+type: ''
+subtitle: ''
+image: ''
+---
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax
