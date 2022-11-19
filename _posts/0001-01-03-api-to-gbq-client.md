@@ -11,6 +11,7 @@ tags:
 type: ''
 subtitle: ''
 image: ''
+readtime: true
 ---
 
 This is the final installment of a three-part blog post:
