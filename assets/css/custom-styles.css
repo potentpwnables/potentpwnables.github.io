@@ -3,3 +3,8 @@
     font-weight: bold !important;
     text-decoration: underline;
 }
+
+.copyright,
+.theme-by {
+    color: white;
+}
