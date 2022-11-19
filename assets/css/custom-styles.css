@@ -1,3 +1,7 @@
+a {
+    font-weight: bold;
+}
+
 .nav-link:hover {
     color: #ffffff !important;
     font-weight: bold !important;
