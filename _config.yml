@@ -63,7 +63,7 @@ social-network-links:
 
 # If you want to show a link to an RSS in the footer, add the site description here.
 # If you don't want to show an RSS link, remove the following line.
-rss-description: The incoherent ramblings of a fool who thinks he's a data engineer
+rss-description: The incoherent ramblings of a fool who wants to be DFIR analyst
 
 # --- General options --- #
 
@@ -91,14 +91,14 @@ feed_show_tags: true
 post_search: true
 
 # The keywords to associate with your website, for SEO purposes
-keywords: "data engineer,java,python,sql,scala,data pipeline"
+keywords: "dfir, cybersecurity, forensics, windows, linux, incident response"
 
 # --- Colours / background image --- #
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
+navbar-col: "#235069"
+navbar-text-col: "#FFFFFF"
 navbar-border-col: "#DDDDDD"
 page-col: "#FFFFFF"
 text-col: "#404040"
