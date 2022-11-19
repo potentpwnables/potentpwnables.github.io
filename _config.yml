@@ -9,7 +9,7 @@
 title: Tibbles 'n Bits
 
 # Your name to show in the footer
-author: Bryan Britten
+author: potent_pwnables
 
 # --- List of links in the navigation bar --- #
 
@@ -39,13 +39,13 @@ round-avatar: true
 social-network-links:
 #  email: "someone@example.com"
 #  facebook: deanattali
-  github: tibblesnbits
-  twitter: tblznbits
+  github: potentpwnables
+  twitter: potent_pwnables
 #  patreon: DeanAttali
 #  youtube: c/daattali
 #  medium: yourname
   reddit: therealtibblesnbits
-#  linkedin: bryanbritten
+  linkedin: bryanbritten
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
