@@ -12,7 +12,6 @@ type: ''
 subtitle: ''
 image: ''
 readtime: true
-thumbnail-img: "/assets/img/sqlite.png"
 ---
 
 This is the first installment of a three-part blog post:
