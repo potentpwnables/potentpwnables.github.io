@@ -235,7 +235,7 @@ def stream(conn, records, fmt):
     yield "</records>"
 ```
 
-Pass the foramt to the `format_record` function (make sure to change this line in both locations):
+Pass the format to the `format_record` function (make sure to change this line in both locations):
 
 ```python
 yield json.dumps(format_record(prev_record, fmt))
