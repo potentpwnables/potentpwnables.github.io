@@ -49,7 +49,15 @@
     {% endfor %}
   {% endif %}
 
-  {% if site.avatar and page.show-avatar != false %}
+  {% if page.thumbnail-img and page.show-avatar != false %}
+    <div class="avatar-container">
+        <div class="avatar-img-border">
+            <a href="{{ '' | absolute_url }}">
+                <img alt="Navigation bar avatar" class="avatar-img" src="{{ page.thumbnail-img | relative_url }}" />
+            </a>
+        </div>
+    </div>
+  {% elsif site.avatar and page.show-avatar != false %}
     <div class="avatar-container">
       <div class="avatar-img-border">
         <a href="{{ '' | absolute_url }}">
