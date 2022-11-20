@@ -10,6 +10,7 @@ type: ''
 subtitle: ''
 image: ''
 readtime: true
+thumbnail_img: "/assets/meta_logo.png"
 ---
 
 A few days ago, I [posted on Reddit](https://www.reddit.com/r/dataengineering/comments/p3b3xd/just_got_hired_as_a_de_in_faang/), which, unsurprisingly, prompted a lot of interest in both my background and what the interview experience was like. So, like any good programmer, I opted to follow the DRY principle and write a blog post instead of retyping the same response over and over. However, before I dive into my prior work experience or the interview process, I want to preface all of this with the disclaimer that I already work at Facebook as a Security Engineer. So, while my prior work experience may have helped me in landing an interview, the fact that I already work there likely played a much larger role in getting my resume in front of the recruiters. I say this up front to avoid any illusions that my experience is applicable to everyone, but I also don't think that it precludes me from sharing my experience either as this is no different than having someone at Facebook recommend you for a role; they both result in nothing more than a guarantee that HR will review your resume. Everything after that is up to you. With that being said, let's dive into the path I took to get here.
