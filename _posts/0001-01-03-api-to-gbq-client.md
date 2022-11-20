@@ -12,6 +12,7 @@ type: ''
 subtitle: ''
 image: ''
 readtime: true
+thumbnail-img: "/assets/img/google_big_query.jpg"
 ---
 
 This is the final installment of a three-part blog post:

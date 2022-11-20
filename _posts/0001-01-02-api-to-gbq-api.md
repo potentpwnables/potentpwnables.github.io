@@ -12,6 +12,7 @@ type: ''
 subtitle: ''
 image: ''
 readtime: true
+thumbnail-img: "/assets/img/flask.jpg"
 ---
 
 This is the second installment of a three-part blog post:
