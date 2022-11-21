@@ -1,12 +1,12 @@
 ---
-title: Testing Hypothesis to Avoid Rabbit Holes in Investigations
+title: Testing Hypotheses to Avoid Rabbit Holes in Investigations
 author: ''
-date: '2022-11-20'
+date: '2022-11-21'
 slug: testing-hypotheses
 categories: []
 tags:
   - investigations
-  - r
+  - tips & tricks
 type: ''
 subtitle: ''
 image: ''
@@ -65,7 +65,7 @@ In order to test this analysis, we’re going to use a [Monte Carlo
 Simulation](https://en.wikipedia.org/wiki/Monte_Carlo_method) to
 randomly choose three “addresses” in a city and then measure how far
 apart those addresses are from each other. We’ll repeat this process one
-million times, keeping track of the average distance ((d<sub>12</sub> +
+thousand times, keeping track of the average distance ((d<sub>12</sub> +
 d<sub>13</sub> + d<sub>23</sub>) / 3, where d<sub>12</sub> is the
 distance between person 1 and person 2) each time, and then we’ll plot a
 histogram of those distances to get a sense of the distribution of
@@ -74,25 +74,18 @@ words where to place a point on our map, we’ll use the population
 density of census tracts as our weight. This will help ensure that we
 account for the fact that people are not typically uniformly distributed
 throughout a city, but instead tend to cluster towards downtown and city
-center areas. I’m also going to cheat a little bit and simply use the
-[Euclidean Distance](https://en.wikipedia.org/wiki/Euclidean_distance)
-for this analysis. According to [this
-blog](https://blog.codechef.com/2021/08/30/the-algorithms-behind-the-working-of-google-maps-dijkstras-and-a-star-algorithm/#:~:text=Which%20algorithm%20do%20they%20use,defined%20by%20edges%20and%20vertices.),
-Google Maps takes advantage of two distance algorithms:
-[Djikstra’s](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) and
-[A\*](https://en.wikipedia.org/wiki/A*_search_algorithm). However, these
-distance algorithms are used on graph data, which we aren’t working with
-in this example. There is also the [Manhattan
-Distance](https://en.wikipedia.org/wiki/Taxicab_geometry), but that’s
-more complicated than I’d like to get into. I mean, it’s not like we’re
-submitting this analysis into court; we’re just trying to decide if we
-want to investigate these people at all.
+center areas. We’re also going to use the algorithm described in [this
+StackOverflow
+question](https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula).
+It’s likely not the correct distance metric to use, but I mean, it’s not
+like we’re submitting this analysis into court; we’re just trying to
+decide if we want to investigate these people at all.
 
 So, in summary, our approach is to randomly place three dots inside of a
 city map using the population density as a means to choose where to
-place those points. We’ll do this one million times and calculate the
+place those points. We’ll do this one thousand times and calculate the
 Euclidean distance between all three points each time, and then create a
-graph at the end that shows the distrubtion of distances.
+graph at the end that shows the distribution of distances.
 
 ## The Data
 
@@ -103,7 +96,7 @@ In order to test this hypothesis, we’ll need to do the following:
 3.  Download the population demographics for those census tracts.  
 4.  Randomly place 3 points inside of our shapefile using the population
     density.  
-5.  Repeat step 4 one million times.
+5.  Repeat step 4 one thousand times.
 
 For this experiment, I’m going to use Detroit as the city. While I’m
 sure most people would assume this, I think it’s worth explicitly
@@ -111,18 +104,13 @@ stating that this is *not* the city in which these individuals from the
 case lived. It is, however, a city near and dear to my heart, so we’ll
 work with that. I’m going to use R for this analysis, and will be
 relying on the `dplyr`, `tigris`, `tidycensus`, `ggplot2`, and `sf`
-packages to conduct my geospatial analysis. I used used a couple of blog
-posts ([1](https://rpubs.com/walkerke/tigris),
-[2](https://www.jla-data.net/eng/merging-geometry-of-sf-objects-in-r/))
-to get me up and running with a preliminary analysis, which you can read
-through if you’re curious to learn more. We’ll also need the shape file
-for Detroit’s city boundary. As you may have seen in the blog post I
-linked, the `tigris` package will grab shapefiles for a county, but
-Wayne County holds more than just Detroit. We can use the two shapefiles
-to conduct an intersection to get just the data that we need. So, with
-that being said, let’s dive into grabbing the data. Let’s start by
-grabbing the Detroit city boundary shape file, which can be downloaded
-from
+packages to conduct my geospatial analysis. We can get the census tract
+shapefiles from the `tigris` package, but we’ll also need the shape file
+for Detroit’s city boundary. We’re grabbing the city boundary because
+`tigris` grabs county-level data, and a county obviously contains more
+than one city. So, with that being said, let’s dive into grabbing the
+data. Let’s start by grabbing the Detroit city boundary shape file,
+which can be downloaded from
 [here](https://data.detroitmi.gov/datasets/detroitmi::city-of-detroit-boundary/explore?location=42.352615%2C-83.099114%2C11.97).
 
 Once that’s downloaded, let’s load that into R, and also grab the Wayne
@@ -153,23 +141,15 @@ Detroit to confirm that we’ve loaded it.
         ) + 
         labs(x="City of Detroit")
 
-    ## Warning: package 'dplyr' was built under R version 4.2.2
+![](0001-01-05-testing-hypotheses_files/figure-markdown_strict/library_load-1.png)
 
-    ## Warning: package 'tidycensus' was built under R version 4.2.2
-
-    ## Warning: package 'sf' was built under R version 4.2.2
-
-    ##   |                                                                              |                                                                      |   0%  |                                                                              |                                                                      |   1%  |                                                                              |=                                                                     |   1%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |===                                                                   |   4%  |                                                                              |===                                                                   |   5%  |                                                                              |====                                                                  |   5%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |=====                                                                 |   8%  |                                                                              |======                                                                |   8%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |=======                                                               |  11%  |                                                                              |========                                                              |  11%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  14%  |                                                                              |==========                                                            |  15%  |                                                                              |===========                                                           |  15%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  16%  |                                                                              |============                                                          |  17%  |                                                                              |============                                                          |  18%  |                                                                              |=============                                                         |  18%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |==============                                                        |  21%  |                                                                              |===============                                                       |  21%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  22%  |                                                                              |================                                                      |  23%  |                                                                              |================                                                      |  24%  |                                                                              |=================                                                     |  24%  |                                                                              |=================                                                     |  25%  |                                                                              |==================                                                    |  25%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  26%  |                                                                              |===================                                                   |  27%  |                                                                              |===================                                                   |  28%  |                                                                              |====================                                                  |  28%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  29%  |                                                                              |=====================                                                 |  30%  |                                                                              |=====================                                                 |  31%  |                                                                              |======================                                                |  31%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |========================                                              |  35%  |                                                                              |=========================                                             |  35%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |==========================                                            |  38%  |                                                                              |===========================                                           |  38%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  40%  |                                                                              |============================                                          |  41%  |                                                                              |=============================                                         |  41%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |==============================                                        |  44%  |                                                                              |===============================                                       |  44%  |                                                                              |===============================                                       |  45%  |                                                                              |================================                                      |  45%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |=================================                                     |  48%  |                                                                              |==================================                                    |  48%  |                                                                              |==================================                                    |  49%  |                                                                              |===================================                                   |  49%  |                                                                              |===================================                                   |  50%  |                                                                              |===================================                                   |  51%  |                                                                              |====================================                                  |  51%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |======================================                                |  55%  |                                                                              |=======================================                               |  55%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  56%  |                                                                              |========================================                              |  57%  |                                                                              |========================================                              |  58%  |                                                                              |=========================================                             |  58%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |==========================================                            |  61%  |                                                                              |===========================================                           |  61%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  62%  |                                                                              |============================================                          |  63%  |                                                                              |============================================                          |  64%  |                                                                              |=============================================                         |  64%  |                                                                              |=============================================                         |  65%  |                                                                              |==============================================                        |  65%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |===============================================                       |  68%  |                                                                              |================================================                      |  68%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |=================================================                     |  71%  |                                                                              |==================================================                    |  71%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  74%  |                                                                              |====================================================                  |  75%  |                                                                              |=====================================================                 |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  77%  |                                                                              |======================================================                |  78%  |                                                                              |=======================================================               |  78%  |                                                                              |=======================================================               |  79%  |                                                                              |========================================================              |  79%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  81%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |===========================================================           |  85%  |                                                                              |============================================================          |  85%  |                                                                              |============================================================          |  86%  |                                                                              |=============================================================         |  87%  |                                                                              |=============================================================         |  88%  |                                                                              |==============================================================        |  88%  |                                                                              |==============================================================        |  89%  |                                                                              |===============================================================       |  89%  |                                                                              |===============================================================       |  90%  |                                                                              |===============================================================       |  91%  |                                                                              |================================================================      |  91%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |==================================================================    |  95%  |                                                                              |===================================================================   |  95%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  97%  |                                                                              |====================================================================  |  98%  |                                                                              |===================================================================== |  98%  |                                                                              |===================================================================== |  99%  |                                                                              |======================================================================| 100%
-
-![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/library_load-1.png)
-
-Excellent! We’ve got the city of Detroit mapped out, and now we need to
+Excellent! We’ve got the city of Detroit mapped out, but now we need to
 add in the census tracts. We already have the census tract data
 downloaded thanks to the `detroit_census_tracts <- tracts(...)` code we
 ran above. The problem, however, as mentioned before, is that the census
-tract data is for the entire Wayne County, so we need to prune that
-data. This can be achieved by intersecting our polygons and only keeping
-the data that overlaps. Think of this like an `inner join` on two SQL
+tract data is for all of Wayne County, so we need to prune that data.
+This can be achieved by intersecting our polygons and only keeping the
+data that overlaps. Think of this like an `inner join` on two SQL
 tables.
 
     detroit_census_tracts = st_intersection(detroit, wayne_county)
@@ -284,7 +264,7 @@ US Census Bureau population data in the R environment
 Identifying the variable to use for general population estimates is a
 bit of a pain in the ass, but the short answer is that `B01001_001`
 should get us what we need. We’re also using the year 2020 because
-that’s the lastest year for which the 5-year ACS was run.
+that’s the latest year for which the 5-year ACS was run.
 
     wayne_population <- get_acs(
         geography="tract",
@@ -295,6 +275,8 @@ that’s the lastest year for which the 5-year ACS was run.
     )
 
     ## Getting data from the 2016-2020 5-year ACS
+    ## Error in get_acs(geography = "tract", variables = "B01001_001", state = "MI",  : 
+    ## A Census API key is required.  Obtain one at http://api.census.gov/data/key_signup.html, and then supply the key to the `census_api_key()` function to use it throughout your tidycensus session.
 
 Ah, we need an API key. Let’s set that up really quick by first [signing
 up](http://api.census.gov/data/key_signup.html), and then installing the
@@ -309,8 +291,8 @@ If successful, you should see a message akin to this:
     [1] "<YOUR API KEY>"
 
 Now that we have our API key and have run `readRenviron("~/.Renviron")`
-recommended in the output, we should be able to get back to the business
-at hand.
+as recommended in the output above, we should be able to get back to the
+business at hand.
 
     wayne_population <- get_acs(
         geography="tract",
@@ -364,8 +346,239 @@ able to do a simple join on the two data sets to get what we need.
 Voila! We now have all of the data that we need to conduct our
 simulation.
 
+> Note: If you run sum(detroit\_census\_with\_pop$estiamte) you’ll see
+> that the results come out to approximately 816,000, which doesn’t
+> match what you get if you Google “Detroit population 2020”. Again,
+> we’re just testing a hypothesis, so we don’t need everything to be
+> exact, but this data point is somewhat concerning. I’m going to ignore
+> it for the sake of this post, but this is a data point that I’d
+> definitely want to clear up in the real world.
+
 ## The Analysis
 
 Our next step is to figure out how to place a point somewhere on our map
 using the estimated population for each census tract to help us choose
-where our hypothetical people live.
+where our hypothetical people live. If we look at the first example in
+[this blog
+post](https://r-spatial.github.io/sf/reference/st_sample.html), we can
+see that we can sample points within an `sf` object, and the beauty of
+the `sf` package is that is gives us an easy way to convert our `tibble`
+to an `sf` object using `st_as_sf()`. If we mimic the example in the
+blog post, we can start to get an idea of how we can place our points.
+
+    detroit_sf_sample <- st_as_sf(detroit_census_with_pop[1:3, ]) # take the first three census tracts
+    points <- st_sample(detroit_sf_sample, 3, exact=TRUE)
+    ggplot() +
+        geom_sf(data=st_geometry(detroit_sf_sample)) +
+        geom_sf(data=points) +
+        theme(
+            panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(),
+            panel.background=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks.x=element_blank(),
+            axis.text.y=element_blank(),
+            axis.ticks.y=element_blank(),
+            legend.position="bottom"
+        ) +
+        labs(x="Random Sample of 3 Points in 3 Census Tracts")
+
+![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/sample_example-1.png)
+
+As we can see, given a set of census tracts, the `sf` package can
+randomly place points inside of those boundaries for us, which is
+exactly what we’re trying to do. However, instead of simply taking the
+first three census tracts in our data, we should randomly sample the
+data based on the population, which we’ll use as a weight. Once we have
+the census tract, we can generate a single point in there, and then
+repeat the process two more times. To simplify this, we can write a
+function that we’ll call in our final simulation.
+
+    generate_point <- function(data) {
+        census_tract <- data |>
+            sample_n(size=1, weight=estimate) |>
+            st_as_sf()
+
+        point <- st_sample(census_tract, 1, exact=TRUE)
+        return(point)
+    }
+
+So, with that, we should be able to call this function three times,
+keeping track of each point, and then plot all of the data on a single
+map.
+
+    p1 <- generate_point(detroit_census_with_pop)
+    p2 <- generate_point(detroit_census_with_pop)
+    p3 <- generate_point(detroit_census_with_pop)
+
+    ggplot() +
+        geom_sf(data=detroit_census_with_pop, aes(geometry=geometry)) +
+        geom_sf(data=p1) +
+        geom_sf(data=p2) +
+        geom_sf(data=p3) +
+        theme(
+            panel.grid.major=element_blank(), 
+            panel.grid.minor=element_blank(),
+            panel.background=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks.x=element_blank(),
+            axis.text.y=element_blank(),
+            axis.ticks.y=element_blank()
+        ) +
+        labs(x="Detroit Census Tracts w/ 3 Weighted Random Sampled Addresses")
+
+![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/single_iteration-1.png)
+
+All that is left now is to calculate the distance between each pair of
+points. As mentioned above, I’m going to opt for the Euclidean distance,
+despite the fact that it’s likely not the correct distance metric to use
+here. If we look at the algorithm for calculating the Euclidean
+Distance, you can see that, for two dimensions (i.e. lat and long), we
+need to take the first value of both points (latitude) and subtract one
+from the other, then we need to grab the second value of both points
+(longitude) and subtract one from the other. We then square each of
+those values and add them together. We then take the square root of this
+value. Wikipedia has an [article on the Haversine
+Distance](https://en.wikipedia.org/wiki/Haversine_formula) that gives us
+the following formula.
+
+$$
+d = 2rarcsin(\sqrt{sin^2(\frac{\varphi\_2 - \varphi\_1}{2}) + cos\varphi\_1 \cdot cos\varphi\_2 \cdot sin^2(\frac{\lambda\_2 - \lambda\_1}{2})})
+$$
+Thankfully for us, because I’m not a math wizard, we already found that
+StackOverflow post that tells us how to turn this into code. So let’s do
+that.
+
+    calculate_distance <- function(p1, p2) {
+        a <- 3963.1905919 # equitorial radius in mi
+        b <- 3949.902569 # polar radius in mi
+        
+        p1_coords <- st_coordinates(p1)
+        p2_coords <- st_coordinates(p2)
+        lat1 <- p1_coords[2]
+        lat2 <- p2_coords[2]
+        lon1 <- p1_coords[1]
+        lon2 <- p2_coords[1]
+        
+        # convert to radians
+        lat1 <- (pi / 180) * lat1
+        lat2 <- (pi / 180) * lat2
+        lon1 <- (pi / 180) * lon1
+        lon2 <- (pi / 180) * lon2
+        
+        # radius of earth at lat1
+        R1 <- (
+            (
+                (
+                    ((a ** 2) * cos(lat1)) ** 2
+                ) + 
+                (
+                    ((b ** 2) * sin(lat1)) ** 2
+                )
+            ) / 
+            (
+                (a * cos(lat1)) ** 2 + (b * sin(lat1)) ** 2
+            )
+        ) ** 0.5
+        
+        x1 <- R1 * cos(lat1) * cos(lon1)
+        y1 <- R1 * cos(lat1) * sin(lon1)
+        z1 <- R1 * sin(lat1)
+
+        # radius of earth at lat2
+        R2 <- (
+            (
+                (
+                    ((a ** 2) * cos(lat2)) ** 2
+                ) + 
+                (
+                    ((b ** 2) * sin(lat2)) ** 2
+                )
+            ) / 
+            (
+                (a * cos(lat2)) ** 2 + (b * sin(lat2)) ** 2
+            )
+        ) ** 0.5
+        
+        x2 <- R2 * cos(lat2) * cos(lon2)
+        y2 <- R2 * cos(lat2) * sin(lon2)
+        z2 <- R2 * sin(lat2)
+        
+        d <- ((x1 - x2) ** 2 + (y1 - y2) ** 2 + (z1 - z2) ** 2) ** 0.5
+        return(d)
+    }
+
+    p1 <- generate_point(detroit_census_with_pop)
+    p2 <- generate_point(detroit_census_with_pop)
+
+    print(
+        paste(
+            c("These two points are", calculate_distance(p1, p2), "miles apart"),
+            collapse=" "
+        )
+    )
+
+    ## [1] "These two points are 2.99748006391263 miles apart"
+
+With that in place, we should now be able to generate three points and
+calculate the distance between them.
+
+    main <- function(data) {
+        p1 <- generate_point(data)
+        p2 <- generate_point(data)
+        p3 <- generate_point(data)
+        
+        d_12 <- calculate_distance(p1, p2)
+        d_13 <- calculate_distance(p1, p3)
+        d_23 <- calculate_distance(p2, p3)
+        
+        avg_distance <- (d_12 + d_13 + d_23) / 3
+        
+        return(avg_distance)
+    }
+
+And now the only thing left to do is run the simulation.
+
+    avg_distances = c()
+    for (i in 1:1e3) {
+        avg_distances <- c(avg_distances, main(detroit_census_with_pop))
+    }
+
+    hist(avg_distances, title="Histogram of Average Distances (n=1e3)")
+
+    ## Warning in plot.window(xlim, ylim, "", ...): "title" is not a graphical
+    ## parameter
+
+    ## Warning in title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...): "title"
+    ## is not a graphical parameter
+
+    ## Warning in axis(1, ...): "title" is not a graphical parameter
+
+    ## Warning in axis(2, at = yt, ...): "title" is not a graphical parameter
+
+![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/monte_carlo_simulation-1.png)
+\## The Conclusion
+
+We’ve now run our simulation one thousand times and grabbed the average
+distance each time. From here, we can simply calculate what percentage
+of the distances are less than or equal to 3.
+
+    mean(avg_distances <= 3)
+
+    ## [1] 0.033
+
+With that calculation, we’re now prepared to answer the question we
+posed above:
+
+**What is the probability that three individuals chosen at random from
+this city would live within 3 miles of each other?**
+
+With a probability of 3.3%, we’d likely conclude that this is relatively
+rare and likely worth looking into. For the case I worked back in 2016,
+we decided that it was not worth pursuing as the probability was about
+25% in that scenario. But regardless of the outcome, we’ve just
+quantified whether or not it’s worth looking into with nothing more than
+a couple of quick calculations. Testing your hypotheses can save you a
+ton of time, and also provide justification for decisions you’ve made in
+your case. Hopefully this post gives you some ideas of hypotheses you could be
+testing in your own environment.
