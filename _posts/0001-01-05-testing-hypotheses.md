@@ -141,7 +141,7 @@ Detroit to confirm that we’ve loaded it.
         ) + 
         labs(x="City of Detroit")
 
-![](0001-01-05-testing-hypotheses_files/figure-markdown_strict/library_load-1.png)
+![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/library_load-1.png)
 
 Excellent! We’ve got the city of Detroit mapped out, but now we need to
 add in the census tracts. We already have the census tract data
