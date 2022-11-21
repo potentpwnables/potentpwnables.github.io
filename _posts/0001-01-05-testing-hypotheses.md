@@ -540,7 +540,8 @@ And now the only thing left to do is run the simulation.
     hist(avg_distances)
 
 ![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/monte_carlo_simulation-1.png)
-\## The Conclusion
+
+## The Conclusion
 
 We’ve now run our simulation one thousand times and grabbed the average
 distance each time. From here, we can simply calculate what percentage
