@@ -6,7 +6,7 @@ slug: testing-hypotheses
 categories: []
 tags:
   - investigations
-  - tips & tricks
+  - tips-n-tricks
 type: ''
 subtitle: ''
 image: ''
