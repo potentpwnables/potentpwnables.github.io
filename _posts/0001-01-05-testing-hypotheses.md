@@ -346,7 +346,7 @@ able to do a simple join on the two data sets to get what we need.
 Voila! We now have all of the data that we need to conduct our
 simulation.
 
-> Note: If you run sum(detroit\_census\_with\_pop$estiamte) you’ll see
+> Note: If you run sum(detroit\_census\_with\_pop$estimate) you’ll see
 > that the results come out to approximately 816,000, which doesn’t
 > match what you get if you Google “Detroit population 2020”. Again,
 > we’re just testing a hypothesis, so we don’t need everything to be
