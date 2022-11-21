@@ -19,3 +19,9 @@ a {
     font-weight: bold;
     text-decoration: underline;
 }
+
+.blog-tags a:hover {
+    color: #235069 !important;
+    border-color: transparent !important;
+    text-decoration: underline;
+}
