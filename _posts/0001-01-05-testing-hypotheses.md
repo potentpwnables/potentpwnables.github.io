@@ -362,7 +362,7 @@ where our hypothetical people live. If we look at the first example in
 [this blog
 post](https://r-spatial.github.io/sf/reference/st_sample.html), we can
 see that we can sample points within an `sf` object, and the beauty of
-the `sf` package is that is gives us an easy way to convert our `tibble`
+the `sf` package is that it gives us an easy way to convert our `tibble`
 to an `sf` object using `st_as_sf()`. If we mimic the example in the
 blog post, we can start to get an idea of how we can place our points.
 
@@ -430,21 +430,14 @@ map.
 ![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/single_iteration-1.png)
 
 All that is left now is to calculate the distance between each pair of
-points. As mentioned above, I’m going to opt for the Euclidean distance,
+points. As mentioned above, I’m going to opt for the Haversine Distance,
 despite the fact that it’s likely not the correct distance metric to use
-here. If we look at the algorithm for calculating the Euclidean
-Distance, you can see that, for two dimensions (i.e. lat and long), we
-need to take the first value of both points (latitude) and subtract one
-from the other, then we need to grab the second value of both points
-(longitude) and subtract one from the other. We then square each of
-those values and add them together. We then take the square root of this
-value. Wikipedia has an [article on the Haversine
+here. Wikipedia has an [article on the Haversine
 Distance](https://en.wikipedia.org/wiki/Haversine_formula) that gives us
 the following formula.
 
-$$
-d = 2rarcsin(\sqrt{sin^2(\frac{\varphi\_2 - \varphi\_1}{2}) + cos\varphi\_1 \cdot cos\varphi\_2 \cdot sin^2(\frac{\lambda\_2 - \lambda\_1}{2})})
-$$
+![](/assets/posts/0001-01-05-testing-hypotheses_files/haversine_formula.png)
+
 Thankfully for us, because I’m not a math wizard, we already found that
 StackOverflow post that tells us how to turn this into code. So let’s do
 that.
