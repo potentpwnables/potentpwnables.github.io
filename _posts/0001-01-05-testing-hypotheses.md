@@ -537,17 +537,7 @@ And now the only thing left to do is run the simulation.
         avg_distances <- c(avg_distances, main(detroit_census_with_pop))
     }
 
-    hist(avg_distances, title="Histogram of Average Distances (n=1e3)")
-
-    ## Warning in plot.window(xlim, ylim, "", ...): "title" is not a graphical
-    ## parameter
-
-    ## Warning in title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...): "title"
-    ## is not a graphical parameter
-
-    ## Warning in axis(1, ...): "title" is not a graphical parameter
-
-    ## Warning in axis(2, at = yt, ...): "title" is not a graphical parameter
+    hist(avg_distances)
 
 ![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/monte_carlo_simulation-1.png)
 \## The Conclusion
