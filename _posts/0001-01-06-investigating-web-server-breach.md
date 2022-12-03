@@ -1,3 +1,20 @@
+---
+title: Investigating a Windows Web Server Breach
+author: ''
+date: '2022-12-03'
+slug: testing-hypotheses
+categories: []
+tags:
+  - investigations
+  - ctf
+  - windows
+  - web-server
+type: ''
+subtitle: ''
+image: ''
+readtime: true
+---
+
 This is the first of what I assume will be a series of blog posts on a
 CTF I’ve been doing related to a fake web server that was breached. The
 challenge can be found
