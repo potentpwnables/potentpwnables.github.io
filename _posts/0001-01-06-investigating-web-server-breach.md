@@ -25,7 +25,7 @@ which will be updated as more posts are added.
 
 1. [Ali Hadi Challenge #1 - Question #2](https://tibblesnbits.com/posts/investigating-web-server-breach-part-i)
 
-# Assumptions
+## Assumptions
 
 Before jumping in, there are a couple of assumptions I’m going to make
 about you as the reader:
@@ -43,7 +43,7 @@ about you as the reader:
 If any of these are completely foreign to you, I would pause here and
 spend some time familiarizing yourself with those concepts.
 
-# The Question
+## The Question
 
 The first question posed in this CTF is “what type of attacks has been
 performed on the box?”, and because I’m new to DFIR and just starting to
@@ -70,7 +70,7 @@ Wikipedia also tells us where to find this file:
 Imager and navigate there to see if we can identify any users that an
 attacker may have added to the web server.
 
-# The SAM Hive
+## The SAM Hive
 
 If we click each of the plus symbols next to the headings until we’ve
 opened the `root` directory, we’ll see what should be a familiar
@@ -141,9 +141,7 @@ however, I’m not sure what time zone this timestamp is using, which is a
 rather important piece of information. While Googling for what time zone
 Eric Zimmerman’s tools use didn’t net me the answer I was looking for, I
 was able to identify a registry key that would tell me the timezone the
-computer was using.
-
-\*\*HKEY\_LOCAL\_MACHINE\*
+computer was using: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation`.
 
 Let’s take a quick tangent and load the SOFTWARE Hive using the same
 approach we did with the SAM Hive - use FTK Imager to extract the file,
@@ -154,14 +152,14 @@ the tool by default, our job is pretty easy for us as
 information, we can see that the server is using Pacific Standard Time.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/timezone_fig_4.png" alt="Image of the Time Zone Information table" style="width:100%;" />
+<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/timezone_information_fig_4.png" alt="Image of the Time Zone Information table" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 4 - The TimeZoneInformation
 registry key found in the SOFTWARE Hive</span>
 </figcaption>
 </figure>
 
-# The Answer
+## The Answer
 
 It’ll be important to keep this time and timezone in mind as we use
 other tools to solicit information to ensure that we’re able to
@@ -178,7 +176,7 @@ control what shows up and what doesn’t. But, for now, I think we can
 safely say it’s just these two users, but as I continue building my DFIR
 skill set, questions like that are what I hope I’ll learn how to answer.
 
-# Digging Deeper
+## Digging Deeper
 
 The question also prompts us to answer *how* the users were added. This
 is one of the first places where things go wonky for me for two
@@ -225,7 +223,7 @@ to open this in Event Viewer though, which I can do by choosing the
 <figure>
 <img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/event_viewer_fig_6.png" alt="Image of the Security Event Log loaded in Event Viewer" style="width:100%;" />
 <figcaption align="center">
-<span style="font-style:italic">Figure 6 - </span>
+<span style="font-style:italic">Figure 6 - Subset of events as seen in the Event Viewer</span>
 </figcaption>
 </figure>
 
@@ -244,8 +242,9 @@ Event ID 4720</span>
 
 Umm… what?
 
-![A meme of Milton from Office Space saying he was told there would be
-data](/assets/posts/0001-01-06-investigating-web-server-breach_files/whered-all-my-data-go.jpg)
+<figure>
+<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/empty_event_log_fig_7.png" alt="A meme of Milton from Office Space saying he was told there would be data" style="width:100%;" />
+</figure>
 
 I don’t know enough about Windows web servers, the security event logs,
 or policies that surround when/if an event is logged to know if this is
@@ -294,7 +293,7 @@ worse, if we go back to FTK Imager, and then navigate to
 `C:\Windows\System32`, we can see that the `VBoxService.exe` file
 doesn’t exist.
 
-# Conclusion
+## Conclusion
 
 Let’s leave it there for now. We’ve identified two users that were added
 to the computer, as well as identified some suspicious activity in the
