@@ -23,7 +23,7 @@ breaking this up by question, with some questions potentially taking
 more than one post. You can find the chronological list of posts below,
 which will be updated as more posts are added.
 
-1.  \[Ali Hadi Challenge \#1 - Question \#2\]
+1. [Ali Hadi Challenge #1 - Question #2](https://tibblesnbits.com/posts/investigating-web-server-breach-part-i)
 
 # Assumptions
 
