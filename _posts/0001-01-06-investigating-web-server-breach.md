@@ -243,7 +243,7 @@ Event ID 4720</span>
 Umm… what?
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/empty_event_log_fig_7.png" alt="A meme of Milton from Office Space saying he was told there would be data" style="width:100%;" />
+<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/whered-all-my-data-go.jpg" alt="A meme of Milton from Office Space saying he was told there would be data" style="width:100%;" />
 </figure>
 
 I don’t know enough about Windows web servers, the security event logs,
