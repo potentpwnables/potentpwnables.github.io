@@ -1,3 +1,19 @@
+---
+title: Investigating a Web Server Breach - Part II
+author: ''
+date: '2022-12-08'
+slug: investigating-web-server-breach-part-ii
+categories: []
+tags:
+  - ctf
+  - windows
+  - logs
+type: ''
+subtitle: ''
+image: ''
+readtime: true
+---
+
 This is one of many posts in a series I’ll be doing on [a
 CTF](https://www.ashemery.com/dfir.html#Challenge1) offered by [Ali
 Hadi](https://twitter.com/binaryz0ne). The CTF looks at a web server
