@@ -3592,8 +3592,7 @@ GET
 GET
 </td>
 <td style="text-align:left;">
-/dvwa/security.php?test=“&gt;
-<script>eval(window.name)</script>
+/dvwa/security.php?test=“&gt;&lt;script&gt;eval(window.name)&lt;/script&gt;
 </td>
 </tr>
 <tr>
@@ -3934,8 +3933,7 @@ n
 <tbody>
 <tr>
 <td style="text-align:left;">
-name=
-<script>alert('XSS')</script>
+name=&lt;script&gt;alert(‘XSS’)&lt;/script&gt;
 </td>
 <td style="text-align:right;">
 2
@@ -3943,10 +3941,7 @@ name=
 </tr>
 <tr>
 <td style="text-align:left;">
-name=
-<h1>
-XSS
-</h1>
+name=&lt;h1&gt;XSS&lt;/h1&gt;
 </td>
 <td style="text-align:right;">
 1
@@ -3954,8 +3949,7 @@ XSS
 </tr>
 <tr>
 <td style="text-align:left;">
-name=
-<script>window.location="http://192.168.56.102"</script>
+name=&lt;script&gt;window.location=“<http://192.168.56.102%22%3C/script%3E>;
 </td>
 <td style="text-align:right;">
 1
@@ -3963,8 +3957,7 @@ name=
 </tr>
 <tr>
 <td style="text-align:left;">
-name=
-<script>windows.location="http://192.168.56.102"</script>
+name=&lt;script&gt;windows.location=“<http://192.168.56.102%22%3C/script%3E>;
 </td>
 <td style="text-align:right;">
 1
