@@ -30,3 +30,7 @@ a {
     color: #FFFFFF !important;
     border: none;
 }
+
+table {
+    margin-top: 20px;
+}
