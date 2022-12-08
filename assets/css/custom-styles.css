@@ -34,3 +34,7 @@ a {
 table {
     margin-top: 20px;
 }
+
+.pagedtable-header-type {
+    display: none;
+}
