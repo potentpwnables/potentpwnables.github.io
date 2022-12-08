@@ -122,7 +122,7 @@ explains it all to us. Let’s use that to ingest and parse the logs
 
     head(raw) |> pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -362,7 +362,7 @@ As expected, there’s no data in those two columns, so we’ll drop them.
 
     head(processed) |> pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -613,7 +613,7 @@ more. Let’s start with getting the date range for our logs.
         slice(1) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -649,7 +649,7 @@ can narrow that down to the top 10 IPs the day the users were added.
         head(10) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -755,7 +755,7 @@ Let’s see if that IP interacted with our server on September 2nd.
         count(ip, sort=TRUE) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -825,7 +825,7 @@ the graph is accurately showing us the data.
         select(ip, date, time) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -882,7 +882,7 @@ and the day of interest.
         head(10) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -996,7 +996,7 @@ the `referer` data tells us as it relates to these resource requests.
         head(10) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -1131,7 +1131,7 @@ Not as helpful as I was hoping. Let’s just get a quick count of the
         count(referer, sort=TRUE) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3047,7 +3047,7 @@ run.
         count(cmd, sort=TRUE) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3207,7 +3207,7 @@ at.
         head(10) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3317,7 +3317,7 @@ are commands that don’t include that.
         head(10) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3357,7 +3357,7 @@ query and reading through the results.
         select(ip, date, time, method, cmd) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3432,7 +3432,7 @@ logs. Let’s look at one specific file.
         select(time, resource) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3508,7 +3508,7 @@ last entry; it looks like it’s deleting itself. Sneaky. Are there other
         count(file, sort=TRUE) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -3645,7 +3645,7 @@ made in the logs?
         select(resource) |> 
         pretty_print()
 
-<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rempx; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
+<table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 1.125rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
