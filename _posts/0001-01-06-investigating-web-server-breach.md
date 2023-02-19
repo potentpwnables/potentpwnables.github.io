@@ -144,7 +144,7 @@ Eric Zimmerman’s tools use didn’t net me the answer I was looking for, I
 was able to identify a registry key that would tell me the timezone the
 computer was using: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation`.
 
-Let’s take a quick tangent and load the SOFTWARE Hive using the same
+Let’s take a quick tangent and load the SYSTEM Hive using the same
 approach we did with the SAM Hive - use FTK Imager to extract the file,
 and then use Registry Explorer to open it - and find that data point.
 Again, because Registry Explorer has several bookmarks that come with
@@ -156,7 +156,7 @@ information, we can see that the server is using Pacific Standard Time.
 <img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/timezone_information_fig_4.png" alt="Image of the Time Zone Information table" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 4 - The TimeZoneInformation
-registry key found in the SOFTWARE Hive</span>
+registry key found in the SYSTEM Hive</span>
 </figcaption>
 </figure>
 
