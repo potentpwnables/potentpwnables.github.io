@@ -257,8 +257,7 @@ that there’s no data in `client_identity` and `user_id`. Note that the
 `|>` is R’s pipe operator, akin to `|` in Bash.
 
     raw |>
-        count(client_identity, user_id, sort=TRUE) |>
-        pretty_print()
+        count(client_identity, user_id, sort=TRUE)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -298,8 +297,7 @@ As expected, there’s no data in those two columns, so we’ll drop them.
         mutate(date=parse_date(date, format="%d/%b/%Y"))
 
     processed |>
-        head(3) |>
-        pretty_print()
+        head(3)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -450,8 +448,7 @@ more. Let’s start with getting the date range for our logs.
             end_date = max(date) |> format("%Y-%m-%d")
         ) |>
         select(start_date, end_date) |>
-        slice(1) |> 
-        pretty_print()
+        slice(1)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -486,8 +483,7 @@ can narrow that down to the top 10 IPs the day the users were added.
 
     processed |>
         count(ip, sort=TRUE) |>
-        head(10) |> 
-        pretty_print()
+        head(10)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -592,8 +588,7 @@ Let’s see if that IP interacted with our server on September 2nd.
 
     processed |>
         filter(date == "2015-09-02") |>
-        count(ip, sort=TRUE) |> 
-        pretty_print()
+        count(ip, sort=TRUE)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -662,8 +657,7 @@ the graph is accurately showing us the data.
         filter(ip == "192.168.56.102" & date == "2015-09-02" & time > "06:00:00") |>
         arrange(time) |>
         slice(1, n()) |>
-        select(ip, date, time) |> 
-        pretty_print()
+        select(ip, date, time)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -719,8 +713,7 @@ and the day of interest.
 
     suspicious_activity |>
         count(resource, sort=TRUE) |>
-        head(10) |> 
-        pretty_print()
+        head(10)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -833,8 +826,7 @@ the `referer` data tells us as it relates to these resource requests.
 
     suspicious_activity |>
         count(resource, referer, sort=TRUE) |>
-        head(10) |> 
-        pretty_print()
+        head(10)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -968,8 +960,7 @@ Not as helpful as I was hoping. Let’s just get a quick count of the
 `referer` field.
 
     suspicious_activity |>
-        count(referer, sort=TRUE) |> 
-        pretty_print()
+        count(referer, sort=TRUE)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2856,8 +2847,7 @@ And now let’s hone in on anything with “vulnerabilities”, “security”, 
     suspicious_activity |>
         filter(str_detect(referer, "vulnerabilities|security|exec")) |>
         count(referer, sort=TRUE) |>
-        head(10) |>
-        pretty_print()
+        head(10)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -2966,8 +2956,7 @@ run.
             "http://192.168.56.101/dvwa/vulnerabilities/sqli/\\?",
             "")
         ) |>
-        count(cmd, sort=TRUE) |> 
-        pretty_print()
+        count(cmd, sort=TRUE)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3126,8 +3115,7 @@ at.
             ""
         )) |>
         count(cmd, sort=TRUE) |>
-        head(10) |> 
-        pretty_print()
+        head(10)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3236,8 +3224,7 @@ are commands that don’t include that.
             ""
         )) |>
         count(cmd, sort=TRUE) |>
-        head(10) |> 
-        pretty_print()
+        head(10)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3276,8 +3263,7 @@ query and reading through the results.
         )) |>
         mutate(cmd = urltools::url_decode(cmd)) |>
         filter(str_detect(cmd, 'php')) |>
-        select(ip, date, time, method, cmd) |> 
-        pretty_print()
+        select(ip, date, time, method, cmd)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3351,8 +3337,7 @@ logs. Let’s look at one specific file.
     suspicious_activity |>
         filter(str_detect(resource, "tmpudvfh.php")) |>
         mutate(resource=urltools::url_decode(resource)) |>
-        select(time, resource) |> 
-        pretty_print()
+        select(time, resource)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3427,8 +3412,7 @@ last entry; it looks like it’s deleting itself. Sneaky. Are there other
     suspicious_activity |>
         mutate(file=str_extract(resource, "tmp.+?\\.php")) |>
         filter(!is.na(file)) |>
-        count(file, sort=TRUE) |> 
-        pretty_print()
+        count(file, sort=TRUE)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3564,8 +3548,7 @@ made in the logs?
     processed |>
         filter(str_detect(resource, "\\.php\\?")) |>
         mutate(resource = urltools::url_decode(resource)) |>
-        select(method, resource) |> 
-        pretty_print()
+        select(method, resource)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3916,8 +3899,7 @@ Let’s first look at the XSS commands the attacker(s) ran.
         filter(str_detect(resource, "/xss_[sr]/\\?")) |>
         mutate(cmd = str_replace(resource, "^/.+?\\?", "")) |>
         mutate(cmd = urltools::url_decode(cmd)) |>
-        count(cmd, sort=TRUE) |>
-        pretty_print()
+        count(cmd, sort=TRUE)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
@@ -3997,8 +3979,7 @@ And what about the `brute` endpoint we saw?
         filter(str_detect(resource, "brute")) |>
         mutate(cmd = str_replace(resource, "^/.+?\\?", "")) |>
         mutate(cmd = urltools::url_decode(cmd)) |>
-        count(cmd, sort=TRUE) |>
-        pretty_print()
+        count(cmd, sort=TRUE)
 
 <table class=" lightable-material table table-condensed table-responsive table-striped table-hover" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 0.95rem; font-family: &#39;Lora&#39;, &#39;Times New Roman&#39;, serif; margin-left: auto; margin-right: auto;">
 <thead>
