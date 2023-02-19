@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    const images = document.getElementsByTagName("img");
+    const images = document.getElementByTagName("article")[0].getElementsByTagName("img");
     let imageSource;
 
-    images.forEach(image => {
-        image.addEventListener("click", e => {
+    for (let i=0; i < images.length; i++) {
+        images[i].addEventListener("click", e => {
             imageSource = e.target.src;
             imageModal(imageSource);
         })
-    });
+    };
 
     let imageModal = src => {
         const modal = document.createElement("div");
