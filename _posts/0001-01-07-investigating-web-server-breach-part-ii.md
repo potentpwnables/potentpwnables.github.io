@@ -101,7 +101,7 @@ header indicating what each “field” represents. Thankfully, the Internet
 can sometimes be a magical place. If we Google for “xampp access log
 format”, we’ll come across this nice
 [resource](https://www.sumologic.com/blog/apache-access-log/) that
-explains it all to us. Let’s use that to ingest and parse the logs
+explains it all to us. Let’s use that to ingest and parse the logs.
 
     library(tidyverse) |>
         suppressPackageStartupMessages() |>
