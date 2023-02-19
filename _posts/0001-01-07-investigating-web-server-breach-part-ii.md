@@ -77,7 +77,7 @@ couple initial questions to get us started.
 
 ## The Analysis
 
-Let’s start by loading the log file, which, as you may recall, was
+Let’s start by loading the log file for the web server, which, as you may recall is running XAMPP, and thus the logs are
 stored in `%SystemRoot$\xampp\apache\logs\access.log`. I’ll be using
 [R](https://www.r-project.org/about.html) and its
 [tidyverse](https://www.tidyverse.org/) set of packages to analyze the
