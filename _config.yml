@@ -9,7 +9,7 @@
 title: Tibbles 'n Bits
 
 # Your name to show in the footer
-author: potent_pwnables
+author: Bryan Britten
 
 # --- List of links in the navigation bar --- #
 
@@ -46,24 +46,16 @@ social-network-links:
 #  medium: yourname
   reddit: therealtibblesnbits
   linkedin: bryanbritten
-#  xing: yourname
 #  stackoverflow: "3943160/daattali"
-#  snapchat: deanat78
 #  instagram: deanat78
-#  spotify: yourname
 #  telephone: +14159998888
-#  steam: deanat78
 #  twitch: yourname
-#  yelp: yourname
-#  telegram: yourname
 #  calendly: yourname
 #  mastodon: instance.url/@username
-#  ORCID: your ORCID ID
-#  google-scholar: your google scholar
 
 # If you want to show a link to an RSS in the footer, add the site description here.
 # If you don't want to show an RSS link, remove the following line.
-rss-description: The incoherent ramblings of a fool who wants to be DFIR analyst
+rss-description: The incoherent ramblings of a fool who wants to be a DFIR analyst
 
 # --- General options --- #
 
@@ -72,7 +64,6 @@ share-links-active:
   twitter: true
   facebook: true
   linkedin: true
-  mastodon: true
   vk: false
 
 # How to display the link to your website in the footer
