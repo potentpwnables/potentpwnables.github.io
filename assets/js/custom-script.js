@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-
-    const images = document.getElementByTagName("article")[0].getElementsByTagName("img");
+    const images = document.getElementsByTagName("article")[0].getElementsByTagName("img");
     let imageSource;
 
     for (let i=0; i < images.length; i++) {
