@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let imageModal = src => {
         const modal = document.createElement("div");
         modal.setAttribute("class", "modal");
+        modal.onclick = () => {
+            modal.remove();
+        };
         document.body.append(modal);
 
         const newImage = document.createElement("img");
