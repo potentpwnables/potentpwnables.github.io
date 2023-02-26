@@ -109,7 +109,7 @@ This was another great question because it didn't really tell you much. Just tha
 This question is the one that threw me through the biggest loop, but was an incredibly good lesson to be reminded of, which is that the abscence of data is still data. What that means in this context is that when I went to `/var/logs/apache2/error.log`, where [this answer](https://askubuntu.com/questions/14763/where-are-the-apache-and-php-log-files) on StackExchange said the data should be, I found the file to be empty. My first reaction to this was "Great, another busted CTF with bad data". But that was an erroneous assumption. In fact, the lack of any logs in the file was itself an indicator that Apache had not been run on the machine. The answer, then, to the question of how many times Apache had been run is 0. Now, this of course ignores anti-forensics measures that should be considered like a bad actor deleting data from the file, but for the purposes of this CTF this question was really great for reminding me that missing data is still data.
 
 <figure>
-<img src="/assets/posts/0001-01-10-cyber-defenders-insider-challenge/question6.png" alt="Image of the empty Apache error.log file as viewed in FTK Imager" style="width:100%;" />
+<img src="/assets/posts/0001-01-10-cyber-defenders-insider-challenge/question7.png" alt="Image of the empty Apache error.log file as viewed in FTK Imager" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Apache error.log file as viewed in FTK Imager</span>
 </figcaption>
