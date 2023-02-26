@@ -52,20 +52,10 @@ The following questions will be answered by analyzing the data in Python. So let
 import pandas as pd
 import os
 import json
-```
 
-
-```python
 files = os.listdir(".")
 files = [file for file in files if file.endswith(".json")]
-print(len(files))
-```
 
-    8
-
-
-
-```python
 data = []
 for file in files:
     with open(file, "r") as f:
@@ -78,10 +68,7 @@ df = pd.DataFrame(data=data[0]["Records"])
 df.head()
 ```
 
-
-
-
-<div>
+<div style="overflow-x: auto;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -248,7 +235,7 @@ df.head()
 <p>5 rows × 21 columns</p>
 </div>
 
-
+<br/>
 
 ###### Question 3
 
@@ -257,10 +244,7 @@ df.head()
 df.sort_values("eventTime", ascending=True, ignore_index=True).loc[0, "eventName"]
 ```
 
-
-
-
-    'AssumeRole'
+This gives us a value of `AssumeRole`, which is our answer.
 
 
 
@@ -272,9 +256,7 @@ df.query("eventTime == '2018-11-28T23:03:20Z'")
 ```
 
 
-
-
-<div>
+<div style="overflow-x: auto;">
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
