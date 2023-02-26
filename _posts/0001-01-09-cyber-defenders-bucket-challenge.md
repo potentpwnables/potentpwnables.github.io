@@ -1,5 +1,5 @@
 ---
-title: Solving CybderDefenders' Bucket Challenge
+title: Solving CyberDefenders' Bucket Challenge
 author: ''
 date: '2023-02-26'
 slug: cyber-defenders-bucket-challenge
