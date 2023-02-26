@@ -6,7 +6,7 @@ slug: cyber-defenders-bucket-challenge
 categories: []
 tags:
   - ctf
-  - cloud
+  - cyberdefenders
   - aws
   - python
 type: ''
@@ -351,8 +351,6 @@ df.query("eventTime == '2018-11-28T23:03:20Z'")
 <p>2 rows × 21 columns</p>
 </div>
 
-
-
 Two results are returned, but the answer is obviously `34.234.236.212`.
 
 ###### Question 5
@@ -412,9 +410,6 @@ The last key in the JSON data is `userName`, which has a value of `level3`, whic
 )
 ```
 
-
-
-
-    'CreateLogStream'
+The answer is `CreateLogStream`.
 
 
