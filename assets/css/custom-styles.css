@@ -10,7 +10,7 @@ a {
 
 .copyright,
 .theme-by,
-.theme-by a{
+.theme-by a {
     color: #ffffff !important;
 }
 
@@ -40,6 +40,10 @@ table {
     display: none;
 }
 
+img {
+    cursor: zoom-in;
+}
+
 .modal {
     width: 100%;
     height: 100%;
@@ -52,12 +56,8 @@ table {
     margin-top: -1px;
 }
 
-.modal > img {
+.modal>img {
     cursor: zoom-out;
-}
-
-figure > img {
-    cursor: zoom-in;
 }
 
 .closeBtn {
