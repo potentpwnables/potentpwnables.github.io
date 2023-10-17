@@ -28,7 +28,7 @@ After Karen started working for 'TAAUSAI', she began to do some illegal activiti
 ###### Question 1
 What distribution of Linux is being used on this machine?  
 
-When loading the AD1 image into FTK Imager, you're presented with a file directory that should be fairly obvious is not Windows. The first thing I noticed was that it didn't have the patented structure I'm familiar with in Windows, including `Program Files`, `Users`, and `Windows`. Instead, you're given three folders: `boot`, `root`, and `var`. Clicking on the first of these folders, `boot`, without even digging down into the folder, gives us the answer to the first question. When you click on this folder, you see files that all mention, Kali, which is a well known distribution of Linux, and the answer to our first question.
+When loading the AD1 image into FTK Imager, you're presented with a file directory that should be fairly obvious is not Windows. The first thing I noticed was that it didn't have the patented structure I'm familiar with in Windows, including `Program Files`, `Users`, and `Windows`. Instead, you're given three folders: `boot`, `root`, and `var`. Clicking on the first of these folders, `boot`, without even digging down into the folder, gives us the answer to the first question. When you click on this folder, you see files that all mention Kali, which is a well known distribution of Linux, and the answer to our first question.
 
 <figure>
 <img src="/assets/posts/0001-01-10-cyber-defenders-insider-challenge/question1.png" alt="Image of the files located in the boot directory" style="width:100%;" />
@@ -52,7 +52,7 @@ In order to get the answer to this question, I opted to export the file, which i
 
 
 ###### Question 3
-It is believed that a credential dumping tool was downloaded. what is the file name of the download?  
+It is believed that a credential dumping tool was downloaded. What is the file name of the download?  
 
 This question sort of gave away the answer in the question itself. First and foremost, it says "a credential dumping tool was downloaded", which immediately made me check the `Downloads` folder. There was one file in there, which was a zip file, and the question's answer text input had a placeholder that gave a hint for the format of the answer, which ended in ".zip". So even if you weren't familiar with [Mimikatz](https://github.com/ParrotSec/mimikatz), you'd still have a pretty good idea of what the answer is, which is `mimikatz_trunk.zip`.
 
@@ -67,7 +67,7 @@ This question sort of gave away the answer in the question itself. First and for
 ###### Question 4
 There was a super-secret file created. What is the absolute path?  
 
-I really liked this question because it didn't really give too much information, and expected you to explore through the data available to you. The thing I liked about this is that because there wasn't much to go, I found myself exploring a lot of files that I thought would be useful, including the files in the `Documents` and `Pictures` folders. But it also caused me to look in the `~/.bash_history` file, which proved to be quite useful. In fact, that file was used to answer this question, the next one, and the last one. the absolute path for this created file is `/root/Desktop/SuperSecretFile.txt`.
+I really liked this question because it didn't really give too much information, and expected you to explore through the data available to you. The thing I liked about this is that because there wasn't much to go on, I found myself exploring a lot of files that I thought would be useful, including the files in the `Documents` and `Pictures` folders. But it also caused me to look in the `~/.bash_history` file, which proved to be quite useful. In fact, that file was used to answer this question, the next one, and the last one. The absolute path for this created file is `/root/Desktop/SuperSecretFile.txt`.
 
 <figure>
 <img src="/assets/posts/0001-01-10-cyber-defenders-insider-challenge/question4.png" alt="Image of the command history showing a command that was run that created a file called SuperSecretFile.txt" style="width:100%;" />
