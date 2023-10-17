@@ -40,7 +40,7 @@ social-network-links:
 #  email: "someone@example.com"
 #  facebook: deanattali
   github: potentpwnables
-  twitter: potent_pwnables
+#  twitter: potent_pwnables
 #  patreon: DeanAttali
 #  youtube: c/daattali
 #  medium: yourname
@@ -55,7 +55,7 @@ social-network-links:
 
 # If you want to show a link to an RSS in the footer, add the site description here.
 # If you don't want to show an RSS link, remove the following line.
-rss-description: The incoherent ramblings of a fool who wants to be a DFIR analyst
+rss-description: The incoherent ramblings of a fool who wants to be a digital forensics investigator
 
 # --- General options --- #
 

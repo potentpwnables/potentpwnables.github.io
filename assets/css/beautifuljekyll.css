@@ -384,6 +384,7 @@ footer {
 
 footer p.text-muted {
   color: {{ site.footer-text-col | default: "#777777" }} !important;
+  font-weight: bold;
 }
 
 footer a {
