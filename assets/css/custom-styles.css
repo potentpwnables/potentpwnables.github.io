@@ -60,6 +60,10 @@ img {
     cursor: zoom-out;
 }
 
+.avatar-img {
+    cursor: pointer;
+}
+
 .closeBtn {
     color: rgba(255, 255, 255, 0.87);
     font-size: 25px;
