@@ -121,7 +121,7 @@ site-js:
 # --- Web Analytics Section --- #
 
 # Fill in your Google Analytics gtag.js ID to track your website using gtag
-gtag: "G-Z2NGNK10LB"
+gtag: "G-FHYQ2M9V31"
 
 # Fill in your Google Analytics ID to track your website using Google Analytics
 google_analytics: "G-Z2NGNK10LB"
