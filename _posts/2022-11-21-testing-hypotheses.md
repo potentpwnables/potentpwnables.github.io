@@ -84,7 +84,7 @@ decide if we want to investigate these people at all.
 So, in summary, our approach is to randomly place three dots inside of a
 city map using the population density as a means to choose where to
 place those points. We’ll do this one thousand times and calculate the
-Euclidean distance between all three points each time, and then create a
+Haversine distance between all three points each time, and then create a
 graph at the end that shows the distribution of distances.
 
 ## The Data
@@ -145,7 +145,7 @@ Detroit to confirm that we’ve loaded it.
 
 Excellent! We’ve got the city of Detroit mapped out, but now we need to
 add in the census tracts. We already have the census tract data
-downloaded thanks to the `detroit_census_tracts <- tracts(...)` code we
+downloaded thanks to the `wayne_county <- tracts(...)` code we
 ran above. The problem, however, as mentioned before, is that the census
 tract data is for all of Wayne County, so we need to prune that data.
 This can be achieved by intersecting our polygons and only keeping the
