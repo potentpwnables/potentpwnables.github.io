@@ -243,7 +243,7 @@ This gives us a value of `AssumeRole`, which is our answer.
 
 
 ##### Question 4
-What source IP address generated the vent dated 2018-11-28 at 23:03:20 UTC?
+What source IP address generated the event dated 2018-11-28 at 23:03:20 UTC?
 
 ```python
 df.query("eventTime == '2018-11-28T23:03:20Z'")
@@ -348,7 +348,7 @@ df.query("eventTime == '2018-11-28T23:03:20Z'")
 Two results are returned, but the answer is obviously `34.234.236.212`.
 
 ##### Question 5
-5. Which IP address does not belong to Amazon AWS infrastructure?
+Which IP address does not belong to Amazon AWS infrastructure?
 
 ```python
 (
