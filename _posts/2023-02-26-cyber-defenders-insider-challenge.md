@@ -122,7 +122,7 @@ It is believed this machine was used to attack another machine. What file proves
 Again, this question was mostly just a matter of exploring the most common directories and taking note of the interesting files. If you navigated to the `/root` directory, you'd find a JPG file sitting in there. You can't open this in FTK Imager, but if you export the file, you can open it locally and see Karen had taken a screenshot of themself running some malicious commands. The file was named `irZLAohL.jpg`.
 
 <figure>
-<img src="/assets/posts/0001-01-10-cyber-defenders-insider-challenge/question6.png" alt="Image of a command console running malicious commands" style="width:100%;" />
+<img src="/assets/posts/0001-01-10-cyber-defenders-insider-challenge/question8.png" alt="Image of a command console running malicious commands" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">The contents of the irZLAohL.jpg file</span>
 </figcaption>
