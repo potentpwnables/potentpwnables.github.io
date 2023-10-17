@@ -17,33 +17,26 @@ readtime: true
 
 This is a simple write up for the first challenge I attempted on [CyberDefenders](https://cyberdefenders.org), which can be found [here](https://cyberdefenders.org/blueteam-ctf-challenges/84#nav-questions).
 
-###### Instructions
+##### Instructions
 Use the provided credentials to access AWS cloud trail logs and answer the questions.
 
-###### Scenario
+##### Scenario
 Welcome, Defender! As an incident responder, we're granting you access to the AWS account called "Security" as an IAM user. This account contains a copy of the logs during the time period of the incident and has the ability to assume the "Security" role in the target account so you can look around to spot the misconfiguration that allowed for this attack to happen.
 
-###### Environment
+##### Environment
 The credentials above give you access to the Security account, which can assume the role of "security" in the Target account. You also have acces to an S3 bucket, named flaws2_logs, in the Security account, that contains the CloudTrail logs recorded during a successful compromise. 
 
-###### Questions
-1. What is the full AWS CLI command used to configure credentials?
-2. What is the 'creation' date of the bucket 'flaws2-logs'?
-3. What is the name of the first generated event according to time?
-4. What source IP address generated the vent dated 2018-11-28 at 23:03:20 UTC?
-5. Which IP address does not belong to Amazon AWS infrastructure?
-6. Which user issued the 'ListBuckets' request?
-7. What was the first request issued by the user 'level1'?
-
-###### Question 1
+##### Question 1
+What is the full AWS CLI command used to configure credentials?
 
 This question can be answered by reading [the docs](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html). The answer is `aws configure`.
 
-###### Question 2
+##### Question 2
+What is the 'creation' date of the bucket 'flaws2-logs'?
 
 This question can be answered by logging into the AWS portal with the credentials provided in the challenge, navigating to the S3 Buckets dashboard, and observing the metadata provided for the `flaws2-logs` bucket. Note that the creation time displayed is, at least for me, in Eastern Time (UTC -5:00), so some simple arithmetic is needed to get it into the UTC time zone requested by the answer. The answer is `2018-11-19 20:54:31 UTC`.
 
-###### Environment Setup
+##### Environment Setup
 
 The following questions will be answered by analyzing the data in Python. So let's load some packages, read in the data, and convert all of the logs to a single Pandas dataframe.
 
@@ -237,7 +230,8 @@ df.head()
 
 <br/>
 
-###### Question 3
+##### Question 3
+What is the name of the first generated event according to time?
 
 
 ```python
@@ -248,8 +242,8 @@ This gives us a value of `AssumeRole`, which is our answer.
 
 
 
-###### Question 4
-
+##### Question 4
+What source IP address generated the vent dated 2018-11-28 at 23:03:20 UTC?
 
 ```python
 df.query("eventTime == '2018-11-28T23:03:20Z'")
@@ -353,8 +347,8 @@ df.query("eventTime == '2018-11-28T23:03:20Z'")
 
 Two results are returned, but the answer is obviously `34.234.236.212`.
 
-###### Question 5
-
+##### Question 5
+5. Which IP address does not belong to Amazon AWS infrastructure?
 
 ```python
 (
@@ -381,8 +375,8 @@ Two results are returned, but the answer is obviously `34.234.236.212`.
 
 There is only one IP address whose User Agent string does not mention AWS, which is `104.102.221.250`.
 
-###### Question 6
-
+##### Question 6
+Which user issued the ‘ListBuckets’ request?
 
 ```python
 df.query("eventName == 'ListBuckets'")['userIdentity'].values
@@ -398,8 +392,8 @@ df.query("eventName == 'ListBuckets'")['userIdentity'].values
 
 The last key in the JSON data is `userName`, which has a value of `level3`, which is our answer.
 
-###### Question 7
-
+##### Question 7
+What was the first request issued by the user ‘level1’?
 
 ```python
 (
