@@ -5,7 +5,6 @@ date: '2020-07-02'
 slug: piping-api-to-gbq-python-part-iii
 categories: []
 tags:
-  - python
   - api
   - bigquery
 type: ''

@@ -8,7 +8,6 @@ tags:
   - ctf
   - cyberdefenders
   - aws
-  - python
 type: ''
 subtitle: ''
 image: ''
