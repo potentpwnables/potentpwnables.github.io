@@ -384,8 +384,8 @@ footer {
 
 footer p.text-muted {
   color: {{ site.footer-text-col | default: "#777777" }} !important;
-  background-color: #5F7894;
-  border-radius: 50%;
+  background-color: rgba(95, 120, 148, .5);
+  border-radius: 50px;
 }
 
 footer a {
