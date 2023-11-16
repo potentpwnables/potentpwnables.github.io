@@ -78,7 +78,7 @@ opened the `root` directory, we’ll see what should be a familiar
 directory structure for anyone who has used a Windows machine before.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/ftk_imager_fig_1.png" alt="Image of the s4a-challenge4 file loaded in FTK Imager" style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/ftk_imager_fig_1.png" alt="Image of the s4a-challenge4 file loaded in FTK Imager" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 1 - The s4a-challenge4 file as
 seen in FTK Imager</span>
@@ -112,7 +112,7 @@ our Hive via `File > Load Hive`. Figure 2 below shows what you should
 see immediately after loading your SAM Hive.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/reg_explorer_fig_2.png" alt="Image of the SAM Hive loaded in Registry Explorer" style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/reg_explorer_fig_2.png" alt="Image of the SAM Hive loaded in Registry Explorer" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 2 - The SAM Hive file as seen in
 Registry Explorer</span>
@@ -129,7 +129,7 @@ exist on the machine, as well as some other information. Immediately,
 we’re able to see a user that should pique our interest.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/user_table_fig_3.png" alt="Image of the User Accounts table" style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/user_table_fig_3.png" alt="Image of the User Accounts table" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 3 - The User Accounts Table found
 in the SAM Hive</span>
@@ -153,7 +153,7 @@ the tool by default, our job is pretty easy for us as
 information, we can see that the server is using Pacific Standard Time.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/timezone_information_fig_4.png" alt="Image of the Time Zone Information table" style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/timezone_information_fig_4.png" alt="Image of the Time Zone Information table" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 4 - The TimeZoneInformation
 registry key found in the SYSTEM Hive</span>
@@ -205,7 +205,7 @@ that tells us that by default Event Viewer log files are stored in the
 Imager, navigate to that directory, and export that file.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/winevt_log_fig_5.png" alt="Image of the files located in the winevt/Logs directory" style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/winevt_log_fig_5.png" alt="Image of the files located in the winevt/Logs directory" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 5 - Subset of files located at
 %SystemRoot%</span>
@@ -222,7 +222,7 @@ to open this in Event Viewer though, which I can do by choosing the
 “Open Saved Log…” option from the right-hand side of the application.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/event_viewer_fig_6.png" alt="Image of the Security Event Log loaded in Event Viewer" style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/event_viewer_fig_6.png" alt="Image of the Security Event Log loaded in Event Viewer" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 6 - Subset of events as seen in the Event Viewer</span>
 </figcaption>
@@ -234,7 +234,7 @@ Event IDs. We’ll filter down to just the 4720 events so that we can see
 the logs for when our two users were added.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/empty_event_log_fig_7.png" alt="Image of the results of filtering down to event 4720. No events are shown." style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/empty_event_log_fig_7.png" alt="Image of the results of filtering down to event 4720. No events are shown." style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 7 - Results of filtering down to
 Event ID 4720</span>
@@ -244,7 +244,7 @@ Event ID 4720</span>
 Umm… what?
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/whered-all-my-data-go.jpg" alt="A meme of Milton from Office Space saying he was told there would be data" style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/whered-all-my-data-go.jpg" alt="A meme of Milton from Office Space saying he was told there would be data" style="width:100%;" />
 </figure>
 
 I don’t know enough about Windows web servers, the security event logs,
@@ -259,7 +259,7 @@ events that occurred between 12:00am and 11:59pm on September 2nd, 2015,
 and then scroll down a bit, we’ll notice what appears to be an anomaly.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/subset_of_sep_2nd_events_fig_8.png" alt="Image of the subset of results of filtering down to events that took place on September 2nd, 2015." style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/subset_of_sep_2nd_events_fig_8.png" alt="Image of the subset of results of filtering down to events that took place on September 2nd, 2015." style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 8 - Subset of events that took
 place on September 2nd, 2015 highlighting a 19-hour gap</span>
@@ -272,7 +272,7 @@ ostensibly, `VBoxService.exe` changed the system time, pushing it
 forward by 19 hours.
 
 <figure>
-<img src="/assets/posts/0001-01-06-investigating-web-server-breach_files/suspicious_event_fig_9.png" alt="Image event ID 4616 showing the system time was changed" style="width:100%;" />
+<img src="/assets/posts/investigating-web-server-breach/suspicious_event_fig_9.png" alt="Image event ID 4616 showing the system time was changed" style="width:100%;" />
 <figcaption align="center">
 <span style="font-style:italic">Figure 9 - Event ID 4616 showing that
 C:.exe changed the system time</span>

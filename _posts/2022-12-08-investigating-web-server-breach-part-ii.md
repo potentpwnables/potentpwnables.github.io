@@ -646,7 +646,7 @@ with the timeline of activity.
             axis.line=element_line(color="black")
         )
 
-![](/assets/posts/0001-01-07-investigating-web-server-breach-part-ii_files/figure-markdown_strict/timeseries-1.png)
+![](/assets/posts/investigating-web-server-breach-part-ii/figure-markdown_strict/timeseries-1.png)
 
 This seems to indicate that our attacker is active pretty early in the
 morning, with virtually all events taking place before 06:00 Pacific

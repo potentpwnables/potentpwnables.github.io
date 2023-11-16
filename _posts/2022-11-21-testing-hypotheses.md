@@ -141,7 +141,7 @@ Detroit to confirm that we’ve loaded it.
         ) + 
         labs(x="City of Detroit")
 
-![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/library_load-1.png)
+![](/assets/posts/testing-hypotheses_files/figure-markdown_strict/library_load-1.png)
 
 Excellent! We’ve got the city of Detroit mapped out, but now we need to
 add in the census tracts. We already have the census tract data
@@ -254,7 +254,7 @@ And we should now be able to plot it.
         ) +
         labs(x="Detroit Census Tracts")
 
-![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/plot_detroit_census-1.png)
+![](/assets/posts/testing-hypotheses_files/figure-markdown_strict/plot_detroit_census-1.png)
 
 Nailed it! Lastly, we need to grab the population data for each census
 tract. We can use the `tidycensus` package for this, which is an R
@@ -341,7 +341,7 @@ able to do a simple join on the two data sets to get what we need.
         ) +
         labs(x="2020 Estimated Detroit Population by Census Tract")
 
-![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/add_population_data-1.png)
+![](/assets/posts/testing-hypotheses_files/figure-markdown_strict/add_population_data-1.png)
 
 Voila! We now have all of the data that we need to conduct our
 simulation.
@@ -383,7 +383,7 @@ blog post, we can start to get an idea of how we can place our points.
         ) +
         labs(x="Random Sample of 3 Points in 3 Census Tracts")
 
-![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/sample_example-1.png)
+![](/assets/posts/testing-hypotheses_files/figure-markdown_strict/sample_example-1.png)
 
 As we can see, given a set of census tracts, the `sf` package can
 randomly place points inside of those boundaries for us, which is
@@ -427,7 +427,7 @@ map.
         ) +
         labs(x="Detroit Census Tracts w/ 3 Weighted Random Sampled Addresses")
 
-![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/single_iteration-1.png)
+![](/assets/posts/testing-hypotheses_files/figure-markdown_strict/single_iteration-1.png)
 
 All that is left now is to calculate the distance between each pair of
 points. As mentioned above, I’m going to opt for the Haversine Distance,
@@ -436,7 +436,7 @@ here. Wikipedia has an [article on the Haversine
 Distance](https://en.wikipedia.org/wiki/Haversine_formula) that gives us
 the following formula.
 
-![](/assets/posts/0001-01-05-testing-hypotheses_files/haversine_formula.png)
+![](/assets/posts/testing-hypotheses_files/haversine_formula.png)
 
 Thankfully for us, because I’m not a math wizard, we already found that
 StackOverflow post that tells us how to turn this into code. So let’s do
@@ -539,7 +539,7 @@ And now the only thing left to do is run the simulation.
 
     hist(avg_distances)
 
-![](/assets/posts/0001-01-05-testing-hypotheses_files/figure-markdown_strict/monte_carlo_simulation-1.png)
+![](/assets/posts/testing-hypotheses_files/figure-markdown_strict/monte_carlo_simulation-1.png)
 
 ## The Conclusion
 

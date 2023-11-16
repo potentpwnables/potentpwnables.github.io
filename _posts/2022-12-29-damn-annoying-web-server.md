@@ -31,7 +31,7 @@ The first issue was that the server was able to connect to the network, but not 
 Despite now being able to connect to the Internet, whenever I tried to go to a website, with the exception of google.com, I would get the same error: Internet Explorer cannot display this web page. Coming fresh off the back of troubleshooting my Internet connection, this error made me feel like I was still failing to _actually_ connect to the Internet. 
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/ie_cannot_display_webpage.png" alt="Image of error received in Internet Explorer" />
+<img src="/assets/posts/damn-annoying-web-server/ie_cannot_display_webpage.png" alt="Image of error received in Internet Explorer" />
 </p>
 
 To make matters worse, the "Diagnose Connection Problems" and "More Information" buttons did nothing when clicked. I scoured the Internet looking for clues as to why this might be happening, and worked with a very helpful member of the [Misec](https://misec.us/) community to help me troubleshoot. As one is want to do with networking issues, we dug into analyzing DNS and routes trying to figure out what was going wrong. With `nslookup`, I was able to confirm that DNS was working because my machine was able to resolve domain names into IP addresses.
@@ -65,7 +65,7 @@ over a maximum of 30 hops:
 After a bit of pondering, I remembered back to my days at the DA's Office when I was working with Internet Explorer and sitting behind a proxy, and how I needed to specify that in the browser settings. Given how I have my home lab set up, all of my Internet traffic needed to be routed through the Squid proxy I was using with pfsense. Launching Internet Explorer, clicking _Tools > Internet Options_ and then clicking on _Connections > LAN Settings_, I was able to set my proxy by checking the box labeled "Use a proxy server for your LAN" and filling in the address and port. I left the "Bypass proxy server for local addresses" checkbox unchecked. Surely now I'd be able to access websites or run `tracert`, right? Right?! Nope. No joy. What the heck?! More thinking ensued, and it dawned on me that there's a very good reason for why `tracert` wasn't working: it uses the ICMP protocol, which is blocked by my firewall. You can see the rules I have in place below.
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/firewall_rules.png" alt="firewall rules" />
+<img src="/assets/posts/damn-annoying-web-server/firewall_rules.png" alt="firewall rules" />
 </p>
 
 Thankfully, Tony did a really good job of explaining pfsense and how it approaches its firewall rules, and I remembered him saying that pfsense by default will block any traffic that is not explicitly allowed, which, as you can probably tell from my firewall rules, includes any and all ICMP traffic. Adding a rule that allows IPv4 ICMP from the 172.16.1.0/24 network resolves the issue and I'm able to use `tracert` to confirm that I am, in fact, albeit very slowly, able to connect to websites.
@@ -90,7 +90,7 @@ over a maximum of 30 hops:
 So, I was clearly accessing the internet, and I was able to successfully establish connections with remote servers, so why was Internet Explorer not able to navigate to any websites? It took much longer than I care to admit to realize that I should look at the developer tools in the browser. Maybe that would shed some light on the situation.
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/enable_scripts.png" alt="Developer tools pane showing scripts have been disabled" />
+<img src="/assets/posts/damn-annoying-web-server/enable_scripts.png" alt="Developer tools pane showing scripts have been disabled" />
 </p>
 
 The first thing I noticed was a tab labeled "Disable". Okay, that's a lie. The first thing I noticed was just how different the developer tools looked in this old version of Internet Explorer (version 8.0). Anyway, when I clicked the "Disable" menu, I saw that "Scripts" had a checkmark next to it, indicating that scripts had been disabled. I clicked this menu item to enable scripts, and found that the "More information" button was now clickable and actually offered some sound advice. Notably, the last bullet point provided concrete steps to take to try to resolve the issue.
@@ -100,7 +100,7 @@ The first thing I noticed was a tab labeled "Disable". Okay, that's a lie. The f
 So, off I went to check if that was the issue, and I was pleasantly surprised to see that the checkboxes for SSL 2.0, TLS 1.1, and TLS 1.2 were unchecked. 
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/enable_ssl_tls.png" alt="Advanced Security Internet Options" />
+<img src="/assets/posts/damn-annoying-web-server/enable_ssl_tls.png" alt="Advanced Security Internet Options" />
 </p>
 
 Enabling these options by checking the boxes and then reloading the webpage showed that my efforts were successful! I was still met with a page saying "This browser is no longer supported" when navigating to twitter.com, but that wasn't important. I was just happy to finally be able to access the Internet. I could now finally do what I originally needed to do, which was download XAMPP and DWVA.
@@ -110,13 +110,13 @@ Enabling these options by checking the boxes and then reloading the webpage show
 So now that I had Internet access, I headed over to [Apache Friends](https://apachefriends.org/download.html), the official site to download XAMPP, and chose to download the _oldest_ version that was available, which at the time of writing was 7.4.33. The reason I opted for the oldest version is that the CTF I'm doing is rather old, and thus likely used an older version of XAMPP on the server. Since I'm trying to replicate that web server as closely as possible, I wanted to use this older version of XAMPP. I was presented with a warning when I visited this page because, again, Microsoft tries its best to increase your server's security and reduce risks and the website's security certificate has expired. I clicked "continue to this website" and went about my day. If only that was the only issue with getting this installation executable. Clicking on the "Download" button next to the version you want redirects you to SourceForge, a site that will forever be ingrained in my memory as a site to ensure you download a virus. Nevertheless, I sat there, waiting for the "Your download will start shortly..." message in bright green text to become true. Alas, no luck. I tried changing the mirror from which the file was downloaded and still no luck. Finally I broke and navigated myself over to the Chrome download page, much to Internet Explorer's chagrin. And to mine it would turn out. As I clicked the "Download Chrome" button, I was presented with yet another ~~obstacle~~ opportunity to learn more about what I was doing as I was informed that my "current security settings do not allow this file to be downloaded".
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/download_chrome.png" alt="Download error message" />
+<img src="/assets/posts/damn-annoying-web-server/download_chrome.png" alt="Download error message" />
 </p>
 
 To fix this, I needed to click on _Tools > Internet Options_, navigate to the _Security_ tab, and click on the "Internet" zone, and then click on "Custom level...". Once in there, I navigated down to the section labeled "Downloads" and ensured the radio buttons next to "Enable" were selected for both "Automatic prompting for file downloads" and "File download" was checked.
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/security_settings.png" alt="Security settings for Internet Zone" />
+<img src="/assets/posts/damn-annoying-web-server/security_settings.png" alt="Security settings for Internet Zone" />
 </p>
 
 With this change, I was finally able to download and install Chrome, and then once again navigate to Apache Friends and download XAMPP. And, of course, this only brings us to the next problem.
@@ -145,7 +145,7 @@ The MySQL service started seamlessly, but starting Apache gave me an error about
 Cool. Cool, cool, cool. At least the error message provided a link to the log file. 
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/msu_package.png" alt="Log file showing errors" />
+<img src="/assets/posts/damn-annoying-web-server/msu_package.png" alt="Log file showing errors" />
 </p>
 
 #### Executing an MSU package
@@ -153,7 +153,7 @@ Cool. Cool, cool, cool. At least the error message provided a link to the log fi
 I had absolutely no idea what this error message meant, and this is the one that took me the longest to troubleshoot because all of the advice I was seeing wasn't working. The first solution I found was in [this post](https://social.technet.microsoft.com/Forums/en-US/b9cf664b-5c5b-4cf0-9764-26a2ffc3735a/solved-failing-to-install-visual-c-redistributable-for-visual-studio-2015?forum=posready), which said that the prerequisite patch KB2999226 needed to be installed, and it gave a link to a [download page](https://msdn.microsoft.com/en-US/library/dn205267.aspx). So I searched for the file called "VS2015 Universal C Runtime Prereq KB2999226 64-bit", as indicated in the forum, downloaded it, ran it, and was presented with yet another error telling me that this update was not applicable to my computer.
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/not_applicable.png" alt="Not applicable error message" />
+<img src="/assets/posts/damn-annoying-web-server/not_applicable.png" alt="Not applicable error message" />
 </p>
 
 #### Installing prereq KB2999226
@@ -175,7 +175,7 @@ It took a little bit for the Service Pack 1 update to install, but after it fini
 I now had a virtual machine running Windows Server 2008 R2 with XAMPP installed! It was a frustrating day, but being able to work through all of these issues and come out successfully running what I wanted to run made me inexplicably happy. 
 
 <p align="center">
-<img src="/assets/posts/0001-01-08-damn-annoying-web-server/xampp_success.png" alt="Control panel showing Apache and MySQL running" />
+<img src="/assets/posts/damn-annoying-web-server/xampp_success.png" alt="Control panel showing Apache and MySQL running" />
 </p>
 
 I haven't attempted to install DWVA yet as I'm giving myself some time to process and unwind from this debugging session, but I'll be sure to update this post should anymore issues arise.
