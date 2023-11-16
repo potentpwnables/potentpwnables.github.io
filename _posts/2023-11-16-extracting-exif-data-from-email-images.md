@@ -259,7 +259,7 @@ Once it has the set of values, it calls `next`, which is a function in Python th
 Now, going back to the `filter_messages` function, we can see that we're looping through each key-value pair in `filters` and using the `key` to extract the relevant header data and then comparing the header value to the `value` that was defined in `filters`. If it's a match, we append the full message (`msg` not `message`) to `filtered_messages`. Once we've looped through all of the messages this way, we return any emails that matched our criteria.
 
 ###### Extracting the EXIF data
-This is the final step of the process, and to achieve this we'll need three more functions.
+This is the final step of the process, and to achieve this we'll need two more functions.
 
 ```python
 def extract_exif_fields_of_interest(exif_data):
@@ -273,29 +273,7 @@ def extract_exif_fields_of_interest(exif_data):
         "DateTimeDigitized": labeled_exif.get("DateTimeDigitized", ''),
     }
 
-def extract_exif_from_attachments(service, message, user_id='me'):
-    msg_id = message['id']
-    for part in message['payload'].get('parts', []):
-        if 'filename' in part and part['filename']:
-            if 'data' in part['body']:
-                file_data = part['body']['data']
-            else:
-                attachment_id = part['body'].get('attachmentId')
-                attachment = service.users().messages().attachments().get(
-                    userId=user_id, messageId=msg_id, id=attachment_id).execute()
-                file_data = attachment['data']
-
-            if file_data:
-                file_data = base64.urlsafe_b64decode(file_data)
-                image = Image.open(io.BytesIO(file_data))
-                
-                exif_data = image._getexif()
-                if exif_data:
-                    return extract_exif_fields_of_interest(exif_data)
-                else:
-                    print(f"No EXIF data found for attachment in message {msg_id}")
-
-def extract_exif_from_inline_images(service, message, user_id='me'):
+def extract_exif_from_images(service, message, user_id='me'):
     msg_id = message['id']
 
     for part in message['payload'].get('parts', []):
@@ -320,9 +298,9 @@ def extract_exif_from_inline_images(service, message, user_id='me'):
                     print(f"No EXIF data found for inline image in message {msg_id}")
 ```
 
-Now, in this example, I was able to get the EXIF data from the attached image. As a result, I won't go into too much detail about that function, but I've included it here for completeness. The first function I'll focus on is the `extract_exif_fields_of_interest` function. This is a helper function that removes the need for me to define the same set of fields twice, once for inline images and once for attached images. It also does the job of labeling the keys in the EXIF data. By default, the `Image` class from the `PIL` library uses the numerical IDs of the EXIF data fields as the keys in the returned dictionary. I understand why they'd do this, but it's not the most usable for us, so this function also converts those numerical IDs into their human-readable equivalent. That's what `labeled_exif = {ExifTags.TAGS[k]: v for k, v in exif_data.items() if k in ExifTags.TAGS}` does.
+The first function I'll focus on is the `extract_exif_fields_of_interest` function. This is a helper function that removes the need for me to define the same set of fields twice, once for inline images and once for attached images. It also does the job of labeling the keys in the EXIF data. By default, the `Image` class from the `PIL` library uses the numerical IDs of the EXIF data fields as the keys in the returned dictionary. I understand why they'd do this, but it's not the most usable for us, so this function also converts those numerical IDs into their human-readable equivalent. That's what `labeled_exif = {ExifTags.TAGS[k]: v for k, v in exif_data.items() if k in ExifTags.TAGS}` does.
 
-The other function of interest is `extract_exif_from_inline_images`. I used ChatGPT to help me generate this code as well, but it's fairly straightforward. It takes in a single message, as well as the `service` object and a `user_id`, and loops over the `parts` field in the `message['payload']` object. This is what the `parts` object looks like for the Konica Minolta image.
+The other function of interest is `extract_exif_from_images`. I used ChatGPT to help me generate this code as well, but it's fairly straightforward. It takes in a single message, as well as the `service` object and a `user_id`, and loops over the `parts` field in the `message['payload']` object. This is what the `parts` object looks like for the Konica Minolta image.
 
 ```python
 >>> message['payload'].get('parts', [])
@@ -404,29 +382,7 @@ def extract_exif_fields_of_interest(exif_data):
         "DateTimeDigitized": labeled_exif.get("DateTimeDigitized", ''),
     }
 
-def extract_exif_from_attachments(service, message, user_id='me'):
-    msg_id = message['id']
-    for part in message['payload'].get('parts', []):
-        if 'filename' in part and part['filename']:
-            if 'data' in part['body']:
-                file_data = part['body']['data']
-            else:
-                attachment_id = part['body'].get('attachmentId')
-                attachment = service.users().messages().attachments().get(
-                    userId=user_id, messageId=msg_id, id=attachment_id).execute()
-                file_data = attachment['data']
-
-            if file_data:
-                file_data = base64.urlsafe_b64decode(file_data)
-                image = Image.open(io.BytesIO(file_data))
-                
-                exif_data = image._getexif()
-                if exif_data:
-                    return extract_exif_fields_of_interest(exif_data)
-                else:
-                    print(f"No EXIF data found for attachment in message {msg_id}")
-
-def extract_exif_from_inline_images(service, message, user_id='me'):
+def extract_exif_from_images(service, message, user_id='me'):
     msg_id = message['id']
 
     for part in message['payload'].get('parts', []):
@@ -460,7 +416,7 @@ if __name__ == '__main__':
     filtered_emails = filter_messages(service, emails, filters)
     print(f"Found {len(filtered_emails)} email(s).")
     for email in filtered_emails:
-        embedded_exif = extract_exif_from_inline_images(service, email)
+        embedded_exif = extract_exif_from_images(service, email)
 ```
 
 And here are the results from running it.
