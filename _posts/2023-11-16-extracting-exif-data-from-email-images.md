@@ -6,6 +6,7 @@ slug: extracting-email-image-exif-data
 categories: []
 tags:
   - exif
+  - email forensics
 type: ''
 subtitle: ''
 image: ''
